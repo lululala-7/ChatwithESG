@@ -8,6 +8,10 @@ ChatwithESG是一个创新性的项目，由LLMs和Django打造成一个对话�
 与智谱清言的GLM-4集成，以处理用户请求。
 使用数据库进行文本存储。
 
+#注意
+
+请将ChatwithESG\evaluate\evaluation.py下evaluate_opt函数中的api_key替换为自己的api_key
+
 #安装
 
 首先，克隆存储库：
@@ -43,3 +47,4 @@ python manage.py runserver
 访问url：
 
 http://127.0.0.1:8000/report/
+
