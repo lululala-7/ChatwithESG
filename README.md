@@ -12,6 +12,7 @@ ChatwithESG是一个创新性的项目，由LLMs和Django打造成一个对话�
 
 首先，克隆存储库：
 https://github.com/lululala-7/ChatwithESG.git
+
 cd ChatwithESG
 
 安装相关包：
@@ -19,6 +20,7 @@ sudo apt-get install python3-dev python3-venv libcurl4-openssl-dev gcc libssl-de
 
 创建并激活虚拟环境：
 python3 -m venv venv
+
 . venv/bin/activate
 
 安装所需的Python包：
@@ -26,6 +28,7 @@ pip install -r requirements.txt
 
 在 settings.py 中配置您的数据库，然后应用迁移：
 python manage.py makemigrations
+
 python manage.py migrate
 
 启动Django开发服务器：
