@@ -39,3 +39,7 @@ python manage.py migrate
 启动Django开发服务器：
 
 python manage.py runserver
+
+访问url：
+
+http://127.0.0.1:8000/report/
