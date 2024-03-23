@@ -63,7 +63,7 @@ def optimize_content(request):
             return JsonResponse(data)
 def evaluate_opt(text):
 
-    client = ZhipuAI(api_key="1377e2c81f0422a87858bcfdd83a6fe8.1LEDeVsroD5arFEY")  # 有限个token
+    client = ZhipuAI(api_key="your api_key")  # 有限个token
     response = client.chat.completions.create(
         model="glm-4",  # 填写需要调用的模型名称
         messages=[
