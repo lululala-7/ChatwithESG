@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Report Evaluation and Optimization</title>
+    <style>
+        body {
+        font-family: '思源黑体', sans-serif;
+        padding-left: 100px;
+        }
+        h1 {
+        font-size: 36px;
+        }
+        p {
+          font-size: 24px;
+        }
+        textarea {
+            width: 1189px;
+            height: 230px;
+            border: 1px solid #CCCCCC;
+            padding: 0;
+            margin: 0;
+            font-family: '思源黑体', sans-serif;
+            font-size: 20px;
+        }
+        .section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .inline {
+            display: flex;
+            justify-content: center;
+            margin-left: -150px;
+        }
+        .inline .box {
+            width: 122px;
+            height: 66px;
+            border: 1px solid #B0FEFF;
+            border-radius: 8px;
+            background-color: #B0FEFF;
+            margin: 0 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .rect {
+            margin: 0 90px;
+        }
+    </style>
+</head>
+<body>
+<h1>文字报告</h1>
+<div class="section">
+  <textarea id="reportInput"></textarea>
+</div>
+<div class="section">
+  <div class="inline">
+    <div class="box rect" onclick="evaluateReport()"> <!-- Rectangular box for 智能分析 -->
+      <p>智能分析</p>
+    </div>
+    <div class="box rect" onclick="optimizeReport()"> <!-- Rectangular box for 智能优化 -->
+      <p>智能优化</p>
+    </div>
+  </div>
+</div>
+<h1 class="section" id="resultTitle">结果</h1>
+<div class="section">
+  <textarea id="resultArea" disabled></textarea>
+</div>
+
+<script>
+  function evaluateReport() {
+    var reportText = document.getElementById("reportInput").value;
+    if (reportText.trim() === "") {
+      alert("请输入有效的文字报告内容");
+      return;
+    }
+    if (reportText.length > 800) {
+      alert("文字报告内容长度不能超过800字符");
+      return;
+    }
+    fetch('http://127.0.0.1:8000/report/evaluate/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ report: reportText })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.data.ret === 0) {
+        document.getElementById("resultTitle").innerText = "分析结果";
+        document.getElementById("resultArea").value = data.msg;
+      } else {
+        alert(data.msg);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+
+  function optimizeReport() {
+    var reportText = document.getElementById("reportInput").value;
+    if (reportText.trim() === "") {
+      alert("请输入有效的文字报告内容");
+      return;
+    }
+    if (reportText.length > 800) {
+      alert("文字报告内容长度不能超过800字符");
+      return;
+    }
+    fetch('http://127.0.0.1:8000/report/optimize/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ report: reportText })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.data.ret === 0) {
+        document.getElementById("resultTitle").innerText = "优化方案";
+        document.getElementById("resultArea").value = data.msg;
+      } else {
+        alert(data.msg);
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  }
+</script>
+
+</body>
+</html>
